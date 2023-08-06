@@ -1,0 +1,7 @@
+{
+    "dotnet.defaultSolution": "DatingApp.sln",
+    "cSpell.words": [
+        "ASPNETCORE",
+        "datingapp"
+    ]
+}

@@ -19,8 +19,8 @@ namespace API.Services
         {
             // Create a list of claims. In this case, we have a single claim for the username.
             var claims = new List<Claim>{
-        new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
-    };
+                new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
+            };
 
             // Create signing credentials using a secret key and the HMACSHA512 signature algorithm.
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

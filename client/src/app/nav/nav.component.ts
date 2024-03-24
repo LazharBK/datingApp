@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +15,7 @@ export class NavComponent implements OnInit {
   currentUser$: Observable<User | null> = of(null);
 
   //note:we can edit accountService access modifiers to use it in the html component instead of declare currentUser$
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private router : Router) {}
 
   ngOnInit(): void {
     // this will auto unsubscribe because we subscribe in the html component with async pipe
@@ -33,8 +34,8 @@ export class NavComponent implements OnInit {
     // this http request will auto unsubscribe ween it is complete
     this.accountService.login(this.model).subscribe(
       {
-        next: response =>{
-          console.log(response);
+        next: _ =>{ // _ equivalent to ()
+          this.router.navigateByUrl('/members');
         },
         error: error => console.log(error)
       }
@@ -43,6 +44,7 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 
 }

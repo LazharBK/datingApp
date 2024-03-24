@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
+import { AccountService } from '../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-test',
@@ -7,6 +9,9 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit{
+
+  constructor(private accountService: AccountService, private toastr: ToastrService){};
+
   ngOnInit(): void {
     const myObservable = new Observable<string>(observer => {
       // Your observable logic here
@@ -47,5 +52,31 @@ export class TestComponent implements OnInit{
     mySubject.next('2 value');
     // Complete the subject to signal completion
     mySubject.complete();
+
+    this.accountService.currentUser$.pipe(
+      map(user => {
+        console.log("-11111111-");
+          return user
+          if(user){
+            console.log("11111111");
+          }else{
+            console.log("22222222");
+          }
+        })
+    )
+
+    this.accountService.currentUser$.subscribe(
+      value => {
+        console.log('----1111----');
+        console.log(value);
+        console.log('----1111----');
+      },
+      error => {
+        console.log('----222----');
+      },
+      () => {
+        console.log('----333----');
+      }
+    )
   }
 }

@@ -7,16 +7,16 @@ import { User } from './_models/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Dating app';
 
-  constructor( private accountService: AccountService) {}
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
   }
 
-  setCurrentUser(){
+  setCurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user')!)
     this.accountService.setCurrentUser(user);
   }

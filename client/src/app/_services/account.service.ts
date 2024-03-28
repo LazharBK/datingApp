@@ -23,6 +23,8 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
         const user = response;
+        console.log('user login : ')
+        console.log(user)
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           // Update observable value to be listing change in the subscribers

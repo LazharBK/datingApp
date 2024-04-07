@@ -26,9 +26,10 @@ export class AccountService {
         console.log('user login : ')
         console.log(user)
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          this.setCurrentUser(user)
+          //localStorage.setItem('user', JSON.stringify(user));
           // Update observable value to be listing change in the subscribers
-          this.currentUserSource.next(user);
+          ///this.currentUserSource.next(user);
         }
       })
     )
@@ -38,9 +39,9 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map((user) => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          this.setCurrentUser(user)
           // Update observable value to be listing change in the subscribers
-          this.currentUserSource.next(user);
+          //  this.currentUserSource.next(user);
         }
         return user; // just for debug can be removed
       })
@@ -48,6 +49,7 @@ export class AccountService {
   }
 
   public setCurrentUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
 

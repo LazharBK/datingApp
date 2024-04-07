@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data;
+﻿using API;
 
 namespace API.Entities
 {
@@ -23,9 +22,9 @@ namespace API.Entities
         public List<Photo> Photos { get; set; } = new List<Photo>(); // or shorter new()
 
         // added in mapper helper to optimize the select qyery
-        // public int GetAge()
-        // {
-        //     return DateOfBirth.CalculateAge();
-        // }
+        public int GetAge()
+        {
+            return DateOfBirth.CalculateAge();
+        }
     }
 }

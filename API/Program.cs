@@ -6,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+// Note: extension methods are only in scope when you explicitly import the namespace into your source code (using API.Extensions)
+// or just create extensions with the namespace API as the root namespace
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 var app = builder.Build();

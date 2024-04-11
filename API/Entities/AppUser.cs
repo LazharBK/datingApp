@@ -21,10 +21,10 @@ namespace API.Entities
         public string Country { get; set; }
         public List<Photo> Photos { get; set; } = new List<Photo>(); // or shorter new()
 
-        // added in mapper helper to optimize the select qyery
-        public int GetAge()
+        // added in mapper helper to optimize the select query
+        /*public int GetAge()
         {
             return DateOfBirth.CalculateAge();
-        }
+        }*/
     }
 }
